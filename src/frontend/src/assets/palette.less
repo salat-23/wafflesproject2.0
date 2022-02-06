@@ -1,0 +1,21 @@
+@palette-first: #F694C1;
+@palette-second: #AAC0AF;
+@palette-third: #2A2D34;
+@palette-forth: #F4A259;
+@palette-fifth: #5B8E7D;
+@fs-small: 14px;
+@fs-med: 24px;
+@fs-big: 40px;
+@import "./normalize.css";
+.keyframes(@name; @arguments) {
+  @-moz-keyframes @name { @arguments(); }
+  @-webkit-keyframes @name { @arguments(); }
+  @keyframes @name { @arguments(); }
+}
+
+.animation(@arguments) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  animation: @arguments;
+}
+
