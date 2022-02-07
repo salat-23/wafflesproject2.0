@@ -1,8 +1,9 @@
-$palette-first: #F694C1;
-$palette-second: #AAC0AF;
-$palette-third: #2A2D34;
-$palette-forth: #F4A259;
-$palette-fifth: #5B8E7D;
+$main-color: #283144;
+$secondary-light: #414a60;
+$type-face: #bfbccbff;
+$secondary-dark: #2A7F62;
+$main-twin: #373F51;
+
 
 $xl: 87.5em; // 4k and hi-res desktop
 $lg: 60em; // 1080 and hi-res laptops
@@ -11,9 +12,30 @@ $sm: 28em; // mobile and low-res tablets
 $xs: 20em; // mobile only
 
 @mixin responsive($query) {
-  @media ( min-width: $query ) {
+  @media (min-width: $query) {
     @content;
   }
 }
+
+@mixin transition($x) {
+  transition: $x;
+  -webkit-transition: $x;
+  -moz-transition: $x;
+  -ms-transition: $x;
+  -o-transition: $x;
+}
+
+* {
+  margin: 0;
+  text-decoration: none;
+  padding: 0;
+  font-family: WorkSans, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+
+  a, a:visited, p, a {
+    color: $type-face;
+  }
+}
+
+
 
 
