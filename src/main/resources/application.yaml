@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}?currentSchema=public
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+
+  liquibase:
+    enabled: false
+    drop-first: false
+    change-log: classpath:db/changelog/db.changelog-master.xml
+
+    default-schema: public
+    url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
+    password: postgres
+    user: postgres

@@ -1,7 +1,8 @@
 <template>
-  <div class="home">
 
-    <div class="updates_container">
+  <div class="watch">
+    <div class="player_container">
+
 
       <div class="item">
         <img class="cover" src="https://i.pinimg.com/originals/d7/00/f9/d700f9ad661cb3314eeecfb290fa095d.jpg">
@@ -26,42 +27,75 @@
 
       </div>
 
+      <div class="details">
+        <div class="details-first-col details-col">
+          <h4>Режиссер</h4>
+          <h4>Тип</h4>
+          <h4>Эпизоды</h4>
+          <h4>Статус</h4>
+          <h4>Первоисточник</h4>
+          <h4>Сезон</h4>
+          <h4>Выпуск</h4>
+          <h4>Студия</h4>
+          <h4>Рейтинг MPAA</h4>
+          <h4>Возрастные ограничения</h4>
+          <h4>Длительность</h4>
+        </div>
+        <div class="details-second-col details-col">
+          <p>Сатоши Микамуя</p>
+          <p>ТВ Сериал</p>
+          <p>5 / 12</p>
+          <p> Онгоинг</p>
+          <p> Манга</p>
+          <p>Зима 2022</p>
+          <p>с 10 января 2022 по 28 марта 2022</p>
+          <p>MAPPA</p>
+          <p>NC-17</p>
+          <p>18+</p>
+          <p>23 мин. ~ серия</p>
+        </div>
+      </div>
+
+      <div class="video_player_container">
+        <div class="video_player">
+          <iframe src="https://video.sibnet.ru/shell.php?videoid=4521284"/>
+        </div>
+      </div>
+
+      <div class="episode_selector">
+        <div class="episode_selector_container">
+
+        </div>
+      </div>
+
 
     </div>
 
 
   </div>
+
 </template>
 
 <script>
-
-
 export default {
-  name: 'Home',
-  data() {
-    return {
-      msg: ''
-    }
-  },
-  mounted() {
-    fetch('/api/hello')
-        .then(response => response.json())
-        .then(data => this.msg = data.title)
-  }
+  name: "Watch"
 }
 </script>
+
 <style scoped lang="scss">
 @import "@/assets/_global_style.scss";
 
-.home {
+
+.watch {
   background: $secondary-light;
 }
 
-.updates_container {
+.player_container {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
 }
+
 
 .item {
   border-bottom: 5px $border-color solid;
@@ -69,13 +103,13 @@ export default {
   margin-top: 30px;
   padding: 20px 0;
   gap: 10px;
-  width: 900px;
+  width: 90%;
   height: min-content;
   overflow: hidden;
   display: grid;
   grid-template-columns: 0.7fr 1.6fr 0.7fr;
   //grid-template-rows: 0.5fr 1.5fr 1.6fr;
-  grid-template-rows: min-content min-content min-content;
+  grid-template-rows: min-content fit-content(100%) min-content;
   grid-template-areas:
         "img title title"
         "img desc desc"
@@ -171,7 +205,60 @@ export default {
       box-shadow: -1px -1px 2px rgba(0, 0, 0, 0.4);
     }
   }
+}
+
+.details {
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+
+  border-bottom: 5px #95A3B3 solid;
+
+  .details-col {
+    padding: 20px;
+    width: 50%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+  }
+
+  .details-first-col {
+    width: 30%;
+  }
+
+  .details-second-col {
+    width: available;
+  }
+
 
 }
+
+.video_player_container {
+  width: 90%;
+  height: 100%;
+  .video_player {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: stretch;
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    float: left;
+    height: 0;
+    iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+
 
 </style>

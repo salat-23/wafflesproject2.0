@@ -25,11 +25,10 @@ export default {
 }
 
 .container {
-
   background: $main-twin;
   display: flex;
   justify-content: center;
-  height: 200vh;
+  min-height: 200vh;
 
   >div {
     width: 1000px;

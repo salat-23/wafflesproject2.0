@@ -23,6 +23,7 @@ export default {
 @import "@/assets/_global_style.scss";
 
 .header {
+  width: 100%;
   display: flex;
   background: $main-color;
   justify-content: space-between;
