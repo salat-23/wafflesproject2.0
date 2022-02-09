@@ -1,19 +1,16 @@
-package com.salat23.wafflesfullstack.model;
+package com.salat23.wafflesfullstack.entity;
 
 
-import com.cloudinary.utils.ObjectUtils;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Map;
+import javax.persistence.Entity;
 
-@EqualsAndHashCode(callSuper = false)
+
 @Data
-public class CloudImage extends BaseEntity {
+@Entity(name = "CloudImage")
+@EqualsAndHashCode(callSuper = false)
+public class CloudImageEntity extends BaseEntity {
 
     private String publicId;
     private String url;

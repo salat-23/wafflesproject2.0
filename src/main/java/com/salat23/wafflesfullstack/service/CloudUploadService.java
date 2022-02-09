@@ -2,7 +2,7 @@ package com.salat23.wafflesfullstack.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
-import com.salat23.wafflesfullstack.model.CloudImage;
+import com.salat23.wafflesfullstack.entity.CloudImageEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,7 +16,7 @@ public class CloudUploadService {
 
     private Cloudinary cloudinary;
 
-    public CloudImage uploadMultipartFile(MultipartFile pic) {
+    public CloudImageEntity uploadMultipartFile(MultipartFile pic) {
 
         try {
             //Creating temporary file and transferring our multipart data to it;
@@ -30,7 +30,7 @@ public class CloudUploadService {
             String url = (String) uploadResult.get("url");
             String secureUrl = (String) uploadResult.get("secure_url");
 
-            CloudImage cloudImage = new CloudImage();
+            CloudImageEntity cloudImage = new CloudImageEntity();
             cloudImage.setData(publicId, url, secureUrl);
             return cloudImage;
         } catch (IOException ex) {

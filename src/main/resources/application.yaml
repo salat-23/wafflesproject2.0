@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}?currentSchema=public
+    url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: postgres
@@ -14,3 +14,16 @@ spring:
     url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
     password: postgres
     user: postgres
+
+
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: d13f490f48d3cb9b2639
+            clientSecret: 4a98222f41741cd5bf69bd5fc3c6b351f84eecbb
+
+            #secret 4a98222f41741cd5bf69bd5fc3c6b351f84eecbb
+
+            # http://localhost:8081/api/login/oauth2/code/github
