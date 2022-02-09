@@ -3,19 +3,24 @@ import Home from '../views/Home.vue'
 import Watch from "@/views/Watch";
 
 const routes = [
-  {
+  /*{
     path: '/',
     name: 'RedirectHome',
     redirect: { name: 'Home' }
-  },
+  },*/
   {
-    path: '/Home',
+    path: '/',
     name: 'Home',
     component: Home
   },
   {
     path: '/:title',
     name: 'Watch',
+    component: Watch
+  },
+  {
+    path: '/:title/:episode',
+    name: 'WatchEpisode',
     component: Watch
   }
 ]

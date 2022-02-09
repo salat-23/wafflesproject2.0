@@ -56,14 +56,55 @@
         </div>
       </div>
 
-      <div class="video_player_container">
-        <div class="video_player">
-          <iframe src="https://video.sibnet.ru/shell.php?videoid=4521284"/>
+      <div v-if="hasEpisodes" class="player_main_container">
+
+        <div class="video_player_container">
+          <div class="video_player">
+            <iframe ref="player" src="https://video.sibnet.ru/shell.php?videoid=4521284"/>
+          </div>
+        </div>
+
+        <div class="episode_selector">
+
+          <RouterLink v-for="episode in episodes" :to="{ path: '/' + title + '/' + episode.number}"
+                      class="episode_button" :class="{ 'active': (episode.number+'' === this.$route.params.episode)}">
+            <p class="episode_button_text">{{ episode.number }}</p>
+          </RouterLink>
+
         </div>
       </div>
 
-      <div class="episode_selector">
-        <div class="episode_selector_container">
+
+      <div class="comments_block">
+        <div class="your_comment">
+          <img class="avatar" src="https://www.w3schools.com/howto/img_avatar.png">
+          <h3 class="username">Your username</h3>
+          <textarea ref="your_text" placeholder="Напишите свой комментарий.." @keydown="autosize" class="text">
+
+          </textarea>
+          <div class="button_container">
+            <button>Отправить</button>
+          </div>
+        </div>
+        <div class="comments">
+          <div class="comments_item">
+            <img class="avatar" src="https://www.w3schools.com/w3images/avatar2.png"/>
+            <h3 class="username">Username loong ass</h3>
+            <p class="text">So this is a sample text that i use to test out comments bro this is so hard front end is so
+              fuckign loong to make bro i swear to god wbtw doctor stone is FUCKIGN AMAZING BRO GO WATCH IT</p>
+          </div>
+          <div class="comments_item">
+            <img class="avatar" src="https://www.w3schools.com/w3images/avatar2.png"/>
+            <h3 class="username">Username loong ass</h3>
+            <p class="text">So this is a sample text that i use to test out comments bro this is so hard front end is so
+              fuckign loong to make bro i swear to god wbtw doctor stone is FUCKIGN AMAZING BRO GO WATCH IT</p>
+          </div>
+          <div class="comments_item">
+            <img class="avatar" src="https://www.w3schools.com/w3images/avatar2.png"/>
+            <h3 class="username">Username loong ass</h3>
+            <p class="text">So this is a sample text that i use to test out comments bro this is so hard front end is so
+              fuckign loong to make bro i swear to god wbtw doctor stone is FUCKIGN AMAZING BRO GO WATCH IT</p>
+          </div>
 
         </div>
       </div>
@@ -78,7 +119,65 @@
 
 <script>
 export default {
-  name: "Watch"
+  name: "Watch",
+  data() {
+    return {
+      title: 'hello',
+      hasEpisodes: true,
+      episodes: [
+        {
+          number: 1,
+          resource: 'https://video.sibnet.ru/shell.php?videoid=4521284'
+        },
+        {
+          number: 2,
+          resource: 'https://video.sibnet.ru/shell.php?videoid=4594744'
+        }
+      ]
+    }
+  },
+  methods: {
+    changeEpisode() {
+      if (this.$route.params.id !== null && this.episodes.length > 0) {
+        //This will execute if you have an episode number in url
+        let number = this.$route.params.episode
+        this.$refs.player.src = this.episodes[number - 1].resource
+        this.scrollTo(this.$refs.player)
+      } else {
+        if (this.episodes.length > 0) {
+          //This will execute if you dont have an episode number in url
+          //and have at least 1 episode
+          this.$refs.player.src = this.episodes[0].resource
+        } else {
+          //This will execute if you dont have any episodes
+          this.hasEpisodes = false
+        }
+      }
+    },
+    scrollTo(element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: "center"
+      })
+    },
+    autosize(e) {
+      let el = e.target
+      setTimeout(() => {
+        el.style.cssText = 'height:auto';
+        el.style.cssText = 'height:' + el.scrollHeight + 'px';
+      }, 0);
+    },
+    clearComment() {
+      this.$refs.your_text.textContent = ''
+    }
+  },
+  mounted() {
+    this.clearComment()
+    this.changeEpisode()
+  },
+  updated() {
+    this.changeEpisode()
+  }
 }
 </script>
 
@@ -108,7 +207,6 @@ export default {
   overflow: hidden;
   display: grid;
   grid-template-columns: 0.7fr 1.6fr 0.7fr;
-  //grid-template-rows: 0.5fr 1.5fr 1.6fr;
   grid-template-rows: min-content fit-content(100%) min-content;
   grid-template-areas:
         "img title title"
@@ -237,9 +335,18 @@ export default {
 
 }
 
+.player_main_container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .video_player_container {
   width: 90%;
   height: 100%;
+  border-bottom: 5px $border-color solid;
+
   .video_player {
     margin-top: 20px;
     display: flex;
@@ -251,6 +358,7 @@ export default {
     padding-bottom: 56.25%;
     float: left;
     height: 0;
+
     iframe {
       position: absolute;
       width: 100%;
@@ -259,6 +367,173 @@ export default {
   }
 }
 
+.episode_selector {
+
+  margin-top: 30px;
+  border-top: 5px $border-color solid;
+  border-bottom: 5px $border-color solid;
+
+  width: 90%;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 10px;
+
+  .episode_button {
+    display: inline-block;
+
+    .episode_button_text {
+      color: $epidose-button-text-color;
+      font-weight: 600;
+      -webkit-text-stroke: 0.35px $title-stroke;
+      border-radius: 50%;
+      text-align: center;
+      text-justify: distribute;
+      width: 50px;
+      height: 50px;
+      font-size: 2em;
+      background: $main-twin;
+    }
+
+  }
+
+  .episode_button.active {
+    .episode_button_text {
+      background: $tag-color;
+    }
+  }
+
+  .episode_button:hover {
+    .episode_button_text {
+      background: $secondary-dark;
+    }
+  }
+
+}
+
+.comments_block {
+
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  gap: 10px;
+
+  .your_comment {
+    margin-bottom: 30px;
+    padding: 10px;
+    gap: 10px;
+    display: grid;
+    grid-template-columns: min-content 1fr 1fr;
+    grid-template-rows: fit-content(100%) fit-content(100%) 2em;
+    grid-template-areas:
+        "avatar username username"
+        "avatar text     text"
+        "button button   button";
+
+
+    .avatar {
+      border-radius: 50%;
+      grid-area: avatar;
+      object-fit: cover;
+      width: 100px;
+      height: 100px;
+    }
+
+    h3 {
+      grid-area: username;
+    }
+
+    textarea {
+      padding: 5px;
+      background: $main-twin;
+      color: $type-face;
+      border-style: none;
+      border-color: Transparent;
+      border-radius: 5px;
+      grid-area: text;
+      outline: none;
+      appearance: none;
+      resize: none;
+      height: auto;
+      font-size: 1.1em;
+
+      overflow: hidden;
+    }
+
+    .button_container {
+
+      grid-area: button;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+
+      button {
+        background: $border-color;
+        transition-duration: 0.1s;
+
+        border: none;
+        border-radius: 10px;
+        width: 50%;
+        height: 100%;
+
+      }
+
+      button:hover {
+        background: $secondary-dark;
+      }
+
+      button:active {
+        background: $type-face;
+      }
+
+    }
+
+
+  }
+
+  .comments {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+
+    .comments_item {
+      padding: 10px;
+      gap: 10px;
+      display: grid;
+      grid-template-columns: min-content 1fr 1fr;
+      grid-template-rows: 0.3fr 1fr;
+      grid-template-areas:
+        "avatar username username"
+        "avatar text text";
+
+
+      .avatar {
+        border-radius: 50%;
+        grid-area: avatar;
+        object-fit: cover;
+        width: 100px;
+        height: 100px;
+      }
+
+      h3 {
+        grid-area: username;
+      }
+
+      p {
+        grid-area: text;
+      }
+    }
+  }
+
+}
 
 
 </style>

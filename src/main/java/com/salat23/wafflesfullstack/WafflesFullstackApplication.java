@@ -11,3 +11,7 @@ public class WafflesFullstackApplication {
     }
 
 }
+
+//TODO: Поиск транслитом, неправильной раскладкой, другие языки
+//TODO: Фильтры, жанры, дата
+//TODO: Комментарии
