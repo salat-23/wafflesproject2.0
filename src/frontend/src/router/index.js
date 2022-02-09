@@ -3,11 +3,10 @@ import Home from '../views/Home.vue'
 import Watch from "@/views/Watch";
 
 const routes = [
-  /*{
-    path: '/',
-    name: 'RedirectHome',
+  {
+    path: '/:catchAll(.*)',
     redirect: { name: 'Home' }
-  },*/
+  },
   {
     path: '/',
     name: 'Home',

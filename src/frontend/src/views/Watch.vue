@@ -67,7 +67,9 @@
         <div class="episode_selector">
 
           <RouterLink v-for="episode in episodes" :to="{ path: '/' + title + '/' + episode.number}"
-                      class="episode_button" :class="{ 'active': (episode.number+'' === this.$route.params.episode)}">
+                      class="episode_button" :class="{ 'active': (
+                          (episode.number === 1 && this.$route.params.episode == null) ||
+                          episode.number+'' === this.$route.params.episode) }">
             <p class="episode_button_text">{{ episode.number }}</p>
           </RouterLink>
 
@@ -88,7 +90,7 @@
         </div>
         <div class="comments">
           <div class="comments_item">
-            <img class="avatar" src="https://www.w3schools.com/w3images/avatar2.png"/>
+            <img class="avatar" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/149.png"/>
             <h3 class="username">Username loong ass</h3>
             <p class="text">So this is a sample text that i use to test out comments bro this is so hard front end is so
               fuckign loong to make bro i swear to god wbtw doctor stone is FUCKIGN AMAZING BRO GO WATCH IT</p>
@@ -118,6 +120,8 @@
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   name: "Watch",
   data() {
@@ -138,46 +142,62 @@ export default {
   },
   methods: {
     changeEpisode() {
-      if (this.$route.params.id !== null && this.episodes.length > 0) {
+      if (this.$route.params.episode !== null
+          && Number(this.$route.params.episode) - 1 <= this.episodes.length
+          && Number(this.$route.params.episode) > 0
+          && this.episodes.length > 0) {
         //This will execute if you have an episode number in url
         let number = this.$route.params.episode
         this.$refs.player.src = this.episodes[number - 1].resource
         this.scrollTo(this.$refs.player)
-      } else {
+        return
+      }
+
+      if (this.$route.params.episode == null) {
+
         if (this.episodes.length > 0) {
           //This will execute if you dont have an episode number in url
           //and have at least 1 episode
+
           this.$refs.player.src = this.episodes[0].resource
-        } else {
-          //This will execute if you dont have any episodes
-          this.hasEpisodes = false
+          return
         }
+
+        //This will execute if you dont have any episodes
+        this.hasEpisodes = false
+
+        return
       }
-    },
-    scrollTo(element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: "center"
-      })
-    },
-    autosize(e) {
-      let el = e.target
-      setTimeout(() => {
-        el.style.cssText = 'height:auto';
-        el.style.cssText = 'height:' + el.scrollHeight + 'px';
-      }, 0);
-    },
-    clearComment() {
-      this.$refs.your_text.textContent = ''
-    }
+      this.$router.push({path: '/' + this.title, force: true})
   },
-  mounted() {
-    this.clearComment()
-    this.changeEpisode()
+  scrollTo(element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: "center"
+    })
   },
-  updated() {
-    this.changeEpisode()
+  autosize(e) {
+    let el = e.target
+    setTimeout(() => {
+      el.style.cssText = 'height:auto'
+      el.style.cssText = 'height:' + el.scrollHeight + 'px'
+    }, 0);
+  },
+  clearComment() {
+    this.$refs.your_text.textContent = ''
   }
+}
+,
+mounted()
+{
+  this.clearComment()
+  this.changeEpisode()
+}
+,
+updated()
+{
+  this.changeEpisode()
+}
 }
 </script>
 
