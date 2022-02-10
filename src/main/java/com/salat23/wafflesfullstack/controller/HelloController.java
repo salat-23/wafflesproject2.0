@@ -1,27 +1,33 @@
 package com.salat23.wafflesfullstack.controller;
 
-import com.salat23.wafflesfullstack.entity.EpisodeEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/api")
 public class HelloController {
 
-    @GetMapping("/api/user")
-    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
-        return Collections.singletonMap("name", principal.getAttribute("email"));
+
+    @GetMapping("/noname")
+    public Map<String, Object> helloNoName() {
+        return Collections.singletonMap("data", "noname get the fuck out -\\ _ //-");
     }
 
-    @GetMapping("/api/hello")
-    public EpisodeEntity hello() {
-        EpisodeEntity episode = new EpisodeEntity();
-        episode.setTitle("Hello world!");
-        return episode;
+    @GetMapping("/admin")
+    @PreAuthorize("hasRole('ADMIN')")
+    public Map<String, Object> helloAdmin() {
+        return Collections.singletonMap("data", "WOW YOU ARE AN ADMIN WTF");
+    }
+
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('USER')")
+    public Map<String, Object> helloUser() {
+        return Collections.singletonMap("data", "you are a user huh");
     }
 
 }

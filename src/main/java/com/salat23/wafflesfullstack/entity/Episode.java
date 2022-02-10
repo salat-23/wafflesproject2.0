@@ -9,12 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Data
-@Entity
+@Entity(name = "episodes")
 @EqualsAndHashCode(callSuper = false)
-public class BaseEntity {
+public class Episode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    private String title;
 }

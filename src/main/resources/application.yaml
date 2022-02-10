@@ -6,9 +6,9 @@ spring:
     password: postgres
 
   liquibase:
-    enabled: false
-    drop-first: false
-    change-log: classpath:db/changelog/db.changelog-master.xml
+    enabled: true
+    drop-first: true
+    change-log: classpath:db/changelog/changelog-master.xml
 
     default-schema: public
     url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
@@ -16,14 +16,7 @@ spring:
     user: postgres
 
 
-  security:
-    oauth2:
-      client:
-        registration:
-          github:
-            clientId: d13f490f48d3cb9b2639
-            clientSecret: 4a98222f41741cd5bf69bd5fc3c6b351f84eecbb
-
-            #secret 4a98222f41741cd5bf69bd5fc3c6b351f84eecbb
-
-            # http://localhost:8081/api/login/oauth2/code/github
+salat23:
+  app:
+    jwtSecret: salatSecretKey
+    jwtExpirationMs: 86400000

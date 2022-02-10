@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+    <changeSet author="salat23" id="create_series_table">
+
+
+        <createTable tableName="users">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="username" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="email" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="roles">
+            <column autoIncrement="true" name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <insert tableName="roles">
+            <column name="id">1</column>
+            <column name="name">ROLE_USER</column>
+        </insert>
+        <insert tableName="roles">
+            <column name="id">2</column>
+            <column name="name">ROLE_MODERATOR</column>
+        </insert>
+        <insert tableName="roles">
+            <column name="id">3</column>
+            <column name="name">ROLE_ADMINISTRATOR</column>
+        </insert>
+
+        <createTable tableName="user_roles">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+
+    </changeSet>
+</databaseChangeLog>
