@@ -13,21 +13,6 @@ import java.util.Map;
 public class HelloController {
 
 
-    @GetMapping("/noname")
-    public Map<String, Object> helloNoName() {
-        return Collections.singletonMap("data", "noname get the fuck out -\\ _ //-");
-    }
 
-    @GetMapping("/admin")
-    @PreAuthorize("hasRole('ADMIN')")
-    public Map<String, Object> helloAdmin() {
-        return Collections.singletonMap("data", "WOW YOU ARE AN ADMIN WTF");
-    }
-
-    @GetMapping("/user")
-    @PreAuthorize("hasRole('USER')")
-    public Map<String, Object> helloUser() {
-        return Collections.singletonMap("data", "you are a user huh");
-    }
 
 }
