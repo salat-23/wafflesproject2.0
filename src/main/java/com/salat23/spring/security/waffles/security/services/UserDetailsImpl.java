@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security.services;
+package com.salat23.spring.security.waffles.security.services;
 
 import java.util.Collection;
 import java.util.List;
@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.salat23.spring.security.postgresql.models.User;
+import com.salat23.spring.security.waffles.models.User;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserDetailsImpl implements UserDetails {

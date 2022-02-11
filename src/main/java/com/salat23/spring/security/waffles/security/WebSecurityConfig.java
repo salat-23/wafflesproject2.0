@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security;
+package com.salat23.spring.security.waffles.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.salat23.spring.security.postgresql.security.jwt.AuthEntryPointJwt;
-import com.salat23.spring.security.postgresql.security.jwt.AuthTokenFilter;
-import com.salat23.spring.security.postgresql.security.services.UserDetailsServiceImpl;
+import com.salat23.spring.security.waffles.security.jwt.AuthEntryPointJwt;
+import com.salat23.spring.security.waffles.security.jwt.AuthTokenFilter;
+import com.salat23.spring.security.waffles.security.services.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

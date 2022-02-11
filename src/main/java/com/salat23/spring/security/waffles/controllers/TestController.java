@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.controllers;
+package com.salat23.spring.security.waffles.controllers;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

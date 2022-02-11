@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.payload.request;
+package com.salat23.spring.security.waffles.payload.request;
 
 
 public class LoginRequest {

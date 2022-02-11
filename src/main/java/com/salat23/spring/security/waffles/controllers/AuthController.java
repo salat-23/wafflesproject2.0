@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.controllers;
+package com.salat23.spring.security.waffles.controllers;
 
 import java.util.HashSet;
 import java.util.List;
@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.salat23.spring.security.postgresql.models.ERole;
-import com.salat23.spring.security.postgresql.models.Role;
-import com.salat23.spring.security.postgresql.models.User;
-import com.salat23.spring.security.postgresql.payload.request.LoginRequest;
-import com.salat23.spring.security.postgresql.payload.request.SignupRequest;
-import com.salat23.spring.security.postgresql.payload.response.JwtResponse;
-import com.salat23.spring.security.postgresql.payload.response.MessageResponse;
-import com.salat23.spring.security.postgresql.repository.RoleRepository;
-import com.salat23.spring.security.postgresql.repository.UserRepository;
-import com.salat23.spring.security.postgresql.security.jwt.JwtUtils;
-import com.salat23.spring.security.postgresql.security.services.UserDetailsImpl;
+import com.salat23.spring.security.waffles.models.ERole;
+import com.salat23.spring.security.waffles.models.Role;
+import com.salat23.spring.security.waffles.models.User;
+import com.salat23.spring.security.waffles.payload.request.LoginRequest;
+import com.salat23.spring.security.waffles.payload.request.SignupRequest;
+import com.salat23.spring.security.waffles.payload.response.JwtResponse;
+import com.salat23.spring.security.waffles.payload.response.MessageResponse;
+import com.salat23.spring.security.waffles.repository.RoleRepository;
+import com.salat23.spring.security.waffles.repository.UserRepository;
+import com.salat23.spring.security.waffles.security.jwt.JwtUtils;
+import com.salat23.spring.security.waffles.security.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

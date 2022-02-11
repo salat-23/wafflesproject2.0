@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security.jwt;
+package com.salat23.spring.security.waffles.security.jwt;
 
 import java.io.IOException;
 
@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.salat23.spring.security.postgresql.security.services.UserDetailsServiceImpl;
+import com.salat23.spring.security.waffles.security.services.UserDetailsServiceImpl;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
   @Autowired

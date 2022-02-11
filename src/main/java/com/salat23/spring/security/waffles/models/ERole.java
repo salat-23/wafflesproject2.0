@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.models;
+package com.salat23.spring.security.waffles.models;
 
 public enum ERole {
   ROLE_USER,

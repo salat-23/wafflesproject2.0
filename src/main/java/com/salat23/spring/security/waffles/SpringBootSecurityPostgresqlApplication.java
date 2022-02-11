@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql;
+package com.salat23.spring.security.waffles;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

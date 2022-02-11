@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security.services;
+package com.salat23.spring.security.waffles.security.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.salat23.spring.security.postgresql.models.User;
-import com.salat23.spring.security.postgresql.repository.UserRepository;
+import com.salat23.spring.security.waffles.models.User;
+import com.salat23.spring.security.waffles.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

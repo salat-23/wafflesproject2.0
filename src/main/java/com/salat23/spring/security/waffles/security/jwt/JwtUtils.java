@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security.jwt;
+package com.salat23.spring.security.waffles.security.jwt;
 
 import java.util.Date;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.salat23.spring.security.postgresql.security.services.UserDetailsImpl;
+import com.salat23.spring.security.waffles.security.services.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 

@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.security.jwt;
+package com.salat23.spring.security.waffles.security.jwt;
 
 import java.io.IOException;
 import java.util.HashMap;

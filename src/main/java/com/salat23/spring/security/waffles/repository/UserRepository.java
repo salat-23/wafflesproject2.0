@@ -1,11 +1,11 @@
-package com.salat23.spring.security.postgresql.repository;
+package com.salat23.spring.security.waffles.repository;
 
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.salat23.spring.security.postgresql.models.User;
+import com.salat23.spring.security.waffles.models.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {

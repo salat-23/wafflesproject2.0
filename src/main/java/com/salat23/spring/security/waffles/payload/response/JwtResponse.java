@@ -1,4 +1,4 @@
-package com.salat23.spring.security.postgresql.payload.response;
+package com.salat23.spring.security.waffles.payload.response;
 
 import java.util.List;
 
