@@ -6,7 +6,7 @@ spring:
     password: postgres
 
   liquibase:
-    enabled: true
+    enabled: false
     drop-first: true
     change-log: classpath:db/changelog/changelog-master.xml
 
@@ -14,9 +14,3 @@ spring:
     url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
     password: postgres
     user: postgres
-
-
-salat23:
-  app:
-    jwtSecret: salatSecretKey
-    jwtExpirationMs: 86400000
