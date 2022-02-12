@@ -66,10 +66,12 @@ public class SeriesController {
     public SeriesResponse uploadSeries(@RequestBody SeriesUploadRequest request) {
 
 
+
         return null;
     }
 
     @PostMapping("/series/{title}/tags")
+    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
     public Set<TagResponse> addTagsToSeries(@RequestBody AddTagsToSeriesRequest request, @PathVariable String title) {
 
         Series series = seriesRepository.findSeriesByTitle(title)

@@ -15,8 +15,6 @@ public class SeriesUploadRequest {
 
     //TODO: add cover upload endpoint
 
-    private Set<Long> tagIds;
-
     private Long directorId;
 
     private Long typeId;
