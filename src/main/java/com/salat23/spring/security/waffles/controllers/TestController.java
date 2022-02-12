@@ -1,35 +1,24 @@
 package com.salat23.spring.security.waffles.controllers;
 
+import com.salat23.spring.security.waffles.security.services.ImageUploadService;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/test")
+@RequestMapping("/api")
 public class TestController {
-	@GetMapping("/all")
-	public String allAccess() {
-		return "Public Content.";
-	}
-	
-	@GetMapping("/user")
-	@PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
-	public String userAccess() {
-		return "User Content.";
+
+	private final ImageUploadService imageUploadService;
+
+	public TestController(ImageUploadService imageUploadService) {
+		this.imageUploadService = imageUploadService;
 	}
 
-	@GetMapping("/mod")
-	@PreAuthorize("hasRole('MODERATOR')")
-	public String moderatorAccess() {
-		return "Moderator Board.";
+	@PostMapping("/upload")
+	public void upload(@RequestParam("file") MultipartFile file) {
+		imageUploadService.uploadImage(file);
 	}
 
-	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
-	public String adminAccess() {
-		return "Admin Board.";
-	}
 }
