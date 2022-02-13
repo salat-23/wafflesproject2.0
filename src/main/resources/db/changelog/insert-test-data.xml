@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    
+        <changeSet id="testdata" author="salat23">
+
+            <insert tableName="users">
+                <column name="id">1</column>
+                <column name="username">salat23</column>
+                <column name="password">$2a$10$e1Unl/LpklMhQZwipfR5jueHE1v2Oi/LMEsMJvf7bWmXkRikS4E0y</column>
+                <column name="email">misikon@mail.ru</column>
+            </insert>
+
+            <insert tableName="expanded_users">
+                <column name="id">1</column>
+                <column name="user_id">1</column>
+                <column name="avatar_id">1</column>
+            </insert>
+
+            <insert tableName="user_roles">
+                <column name="user_id">1</column>
+                <column name="role_id">1</column>
+            </insert>
+            
+            <insert tableName="image_resource">
+                <column name="id">1</column>
+                <column name="url">https://res.cloudinary.com/salat23/image/upload/v1644764810/nsnjbomcdugkcnfrsp8g.jpg</column>
+                <column name="height">225</column>
+                <column name="width">225</column>
+                <column name="public_id">nsnjbomcdugkcnfrsp8g</column>
+            </insert>
+
+
+            <insert tableName="age_restrictions">
+                <column name="id">1</column>
+                <column name="min_age">16</column>
+            </insert>
+            <insert tableName="directors">
+                <column name="id">1</column>
+                <column name="name">Makoto Sinkai</column>
+            </insert>
+            <insert tableName="sources">
+                <column name="id">1</column>
+                <column name="name">Манга</column>
+            </insert>
+            <insert tableName="studios">
+                <column name="id">1</column>
+                <column name="name">Bilibili</column>
+            </insert>
+            <insert tableName="type">
+                <column name="id">1</column>
+                <column name="name">ТВ сериал</column>
+            </insert>
+
+
+            <insert tableName="tags">
+                <column name="id">1</column>
+                <column name="name">Приключения</column>
+            </insert>
+            <insert tableName="tags">
+                <column name="id">2</column>
+                <column name="name">Экшн</column>
+            </insert>
+            <insert tableName="tags">
+                <column name="id">3</column>
+                <column name="name">Комедия</column>
+            </insert>
+
+            <insert tableName="series_tag">
+                <column name="id">1</column>
+                <column name="series_id">1</column>
+                <column name="tag_id">1</column>
+            </insert>
+            <insert tableName="series_tag">
+                <column name="id">2</column>
+                <column name="series_id">1</column>
+                <column name="tag_id">2</column>
+            </insert>
+            <insert tableName="series_tag">
+                <column name="id">3</column>
+                <column name="series_id">2</column>
+                <column name="tag_id">1</column>
+            </insert>
+            <insert tableName="series_tag">
+                <column name="id">4</column>
+                <column name="series_id">2</column>
+                <column name="tag_id">3</column>
+            </insert>
+
+
+            <insert tableName="series">
+                <column name="id">1</column>
+                <column name="description">Test description here lsdfjhghsadfjkdsagjklasdagsjekgjiaweuigaweiawrgejgkarjagdskjkglasjklgasjklgsa</column>
+                <column name="title">Some title</column>
+                <column name="first_created">now()</column>
+                <column name="last_updated">now()</column>
+                <column name="age_restriction_id">1</column>
+                <column name="cover_id">1</column>
+                <column name="director_id">1</column>
+                <column name="source_id">1</column>
+                <column name="status_id">1</column>
+                <column name="studio_id">1</column>
+                <column name="type_id">1</column>
+            </insert>
+            <insert tableName="series">
+                <column name="id">2</column>
+                <column name="description">
+                    18 век, Атлантический океан. Фена Хаутман отправилась с отцом в морское путешествие, но вскоре на их корабль
+                    нападают пираты. Фену сажают в шлюпку и ей удаётся спастить в одиночку. Прошло десять лет. Фена выросла
+                    красавицей с белоснежной кожей и отливающими серебром волосами. Когда Фену настигла погоня, её спасает юноша в
+                    красных доспехах и шлеме с оленьими рогами. Это был Юкимару, который обещал найти её. Их встреча разбудила
+                    спящие в Фене воспоминания. Вспомнив эти слова, Фена с Юкимару и его друзья отравляется в новое морское
+                    путешествие искать загадочный «Эдем».
+                </column>
+                <column name="title">Очень длинное название аниме спасибо вам лайт новелы за то что пересказываете блять сюжет в заголовке</column>
+                <column name="first_created">now()</column>
+                <column name="last_updated">now()</column>
+                <column name="age_restriction_id">1</column>
+                <column name="cover_id">1</column>
+                <column name="director_id">1</column>
+                <column name="source_id">1</column>
+                <column name="status_id">1</column>
+                <column name="studio_id">1</column>
+                <column name="type_id">1</column>
+            </insert>
+
+        </changeSet>
+    
+</databaseChangeLog>

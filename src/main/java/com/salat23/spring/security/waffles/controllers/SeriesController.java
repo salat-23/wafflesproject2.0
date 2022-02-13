@@ -11,9 +11,11 @@ import com.salat23.spring.security.waffles.payload.response.TagResponse;
 import com.salat23.spring.security.waffles.repository.SeriesRepository;
 import com.salat23.spring.security.waffles.repository.SeriesTagRepository;
 import com.salat23.spring.security.waffles.repository.TagsRepository;
+import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,33 +34,28 @@ public class SeriesController {
         this.tagsRepository = tagsRepository;
     }
 
+    @GetMapping("/series/page/{page}")
+    public Page<SeriesResponse> pageSeries(@PathVariable Integer page) {
+        Pageable sortedByLatest = PageRequest.of(page, 4, Sort.by("firstCreated").descending());
+        List<SeriesResponse> list = seriesRepository.findAll(sortedByLatest)
+                .stream().map(this::seriesToSeriesResponse).collect(Collectors.toList());
+        return new PageImpl<>(list, sortedByLatest, list.size());
+    }
 
-    @GetMapping("/series/{title}")
+    @GetMapping("/series/title/{title}")
     public SeriesResponse getSeries(@PathVariable String title) {
         Series series = seriesRepository.findSeriesByTitle(title)
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Series %s was not found", title)));
 
-        SeriesResponse response = new SeriesResponse();
-        response.setTitle(series.getTitle());
-        response.setDescription(series.getDescription());
-        response.setCover(series.getCover().getUrl());
-        response.setType(series.getType().getName());
-        response.setEpisodeVariants(series.getEpisodeVariants().stream().map(ev -> {
-            EpisodeSetResponse episodeSetResponse = new EpisodeSetResponse();
-            episodeSetResponse.setName(ev.getName());
-            episodeSetResponse.setEpisodes(ev.getEpisodes());
+        return seriesToSeriesResponse(series);
+    }
 
-            return episodeSetResponse;
-        }).collect(Collectors.toSet()));
-        response.setDirector(series.getDirector().getName());
-        response.setSource(series.getSource().getName());
-        response.setStatus(series.getStatus().getName().toString());
-        response.setAgeRestriction(series.getAgeRestriction().getMinAge());
-        response.setStudio(series.getStudio().getName());
-        response.setTags(series.getTags().stream().map(
-                t -> t.getTag().getName()).collect(Collectors.toSet()));
+    @GetMapping("/series/id/{id}")
+    public SeriesResponse getSeries(@PathVariable Long id) {
+        Series series = seriesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Series with id %s was not found", id)));
 
-        return response;
+        return seriesToSeriesResponse(series);
     }
 
     @PostMapping("/series/upload")
@@ -69,6 +66,8 @@ public class SeriesController {
 
         return null;
     }
+
+
 
     @PostMapping("/series/{title}/tags")
     //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MEMBER')")
@@ -97,5 +96,26 @@ public class SeriesController {
                 }).collect(Collectors.toSet());
     }
 
+    private SeriesResponse seriesToSeriesResponse(Series p) {
+        SeriesResponse response = new SeriesResponse();
+        response.setTitle(p.getTitle());
+        response.setDescription(p.getDescription());
+        response.setCover(p.getCover().getUrl());
+        response.setType(p.getType().getName());
+        response.setEpisodeVariants(p.getEpisodeVariants().stream().map(ev -> {
+            EpisodeSetResponse episodeSetResponse = new EpisodeSetResponse();
+            episodeSetResponse.setName(ev.getName());
+            episodeSetResponse.setEpisodes(ev.getEpisodes());
+            return episodeSetResponse;
+        }).collect(Collectors.toSet()));
+        response.setDirector(p.getDirector().getName());
+        response.setSource(p.getSource().getName());
+        response.setStatus(p.getStatus().getName().toString());
+        response.setAgeRestriction(p.getAgeRestriction().getMinAge());
+        response.setStudio(p.getStudio().getName());
+        response.setTags(p.getTags().stream().map(
+                t -> t.getTag().getName()).collect(Collectors.toSet()));
+        return response;
+    }
 
 }

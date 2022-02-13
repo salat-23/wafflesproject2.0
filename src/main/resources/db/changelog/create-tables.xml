@@ -6,25 +6,223 @@
     <changeSet author="salat23" id="create_series_table">
 
 
-    <createTable tableName="users">
-        <column name="id" type="bigint">
-            <constraints primaryKey="true" nullable="false"/>
-        </column>
-        <column name="username" type="varchar">
-            <constraints nullable="false" unique="true"/>
-        </column>
-        <column name="email" type="varchar">
-            <constraints nullable="false" unique="true"/>
-        </column>
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="username" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="roles">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="user_roles">
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="role_id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="type">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
-    </createTable>
+        <createTable tableName="tags">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="studios">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="sources">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="series_tag">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="series_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tag_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
 
+        <createTable tableName="series_status">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="series_episode_variants">
+            <column name="series_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="episode_variants_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="episodes_sets_episodes">
+            <column name="episodes_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="episodes_set_id" type="bigint">
+                <constraints primaryKey="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="series">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="description" type="varchar"/>
+            <column name="title" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+            <column name="first_created" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="age_restriction_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cover_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="director_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="source_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="studio_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="image_resource">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="url" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="height" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="width" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="public_id" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="expanded_users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="avatar_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="bigint">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="episodes_sets">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="episodes">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="varchar"/>
+            <column name="number" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="url" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="directors">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="age_restrictions">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="min_age" type="bigint">
+                <constraints unique="true" nullable="false"/>
+            </column>
+        </createTable>
 
     </changeSet>
 </databaseChangeLog>

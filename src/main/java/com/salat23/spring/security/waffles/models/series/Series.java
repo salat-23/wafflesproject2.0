@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Getter
@@ -24,6 +25,12 @@ public class Series {
 
     @OneToMany(mappedBy = "series")
     private Set<SeriesTag> tags;
+
+    @Column(name = "last_updated")
+    private LocalDate lastUpdated;
+
+    @Column(name = "first_created")
+    private LocalDate firstCreated;
 
     @OneToOne
     private ImageResource cover;

@@ -7,17 +7,17 @@ spring:
 
 
   liquibase:
-    drop-first: false
+    drop-first: true
     change-log: classpath:db/changelog/db.changelog-master.xml
-    enabled: false
+    enabled: true
     default-schema: public
     url: ${CONNECTION_STRING:jdbc:postgresql://localhost:5432/postgres}
     password: postgres
-    user: postgre
+    user: postgres
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: create
+      ddl-auto: none
 
 
 
