@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.salat23.waffles.payload.response.JwtResponse;
 import com.salat23.waffles.security.jwt.JwtUtils;
-import com.salat23.waffles.security.services.UserDetailsImpl;
+import com.salat23.waffles.services.UserDetailsImpl;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

@@ -7,6 +7,8 @@ import java.util.Set;
 @Data
 public class SeriesResponse {
 
+    private Long id;
+
     private String title;
 
     private String description;

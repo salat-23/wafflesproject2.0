@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.salat23.waffles.security.services.UserDetailsImpl;
+import com.salat23.waffles.services.UserDetailsImpl;
 
 import io.jsonwebtoken.*;
 

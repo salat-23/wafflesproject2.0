@@ -1,5 +1,7 @@
 package com.salat23.waffles.controllers;
 
+import com.cloudinary.Cloudinary;
+import com.salat23.waffles.models.ImageResource;
 import com.salat23.waffles.models.series.Series;
 import com.salat23.waffles.models.series.SeriesTag;
 import com.salat23.waffles.models.series.Tag;
@@ -11,13 +13,15 @@ import com.salat23.waffles.payload.response.TagResponse;
 import com.salat23.waffles.repository.SeriesRepository;
 import com.salat23.waffles.repository.SeriesTagRepository;
 import com.salat23.waffles.repository.TagsRepository;
+import com.salat23.waffles.services.ImageUploadService;
 import org.springframework.data.domain.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.io.IOException;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RequestMapping("/api")
@@ -27,11 +31,13 @@ public class SeriesController {
     private final SeriesRepository seriesRepository;
     private final SeriesTagRepository seriesTagRepository;
     private final TagsRepository tagsRepository;
+    private final ImageUploadService imageUploadService;
 
-    public SeriesController(SeriesRepository seriesRepository, SeriesTagRepository seriesTagRepository, TagsRepository tagsRepository) {
+    public SeriesController(SeriesRepository seriesRepository, SeriesTagRepository seriesTagRepository, TagsRepository tagsRepository, ImageUploadService imageUploadService) {
         this.seriesRepository = seriesRepository;
         this.seriesTagRepository = seriesTagRepository;
         this.tagsRepository = tagsRepository;
+        this.imageUploadService = imageUploadService;
     }
 
     @GetMapping("/series/page/{page}")
@@ -56,6 +62,21 @@ public class SeriesController {
                 .orElseThrow(() -> new EntityNotFoundException(String.format("Series with id %s was not found", id)));
 
         return seriesToSeriesResponse(series);
+    }
+
+    @PostMapping("/series/cover/{id}")
+    public Map<String, String> uploadCover(@PathVariable Long id, @RequestBody MultipartFile cover) {
+        Series series = seriesRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Series with id %s were not found", id)));
+        try {
+            ImageResource imageResource = imageUploadService.uploadImage(cover);
+            series = imageUploadService.changeSeriesCover(series, imageResource);
+            seriesRepository.save(series);
+            System.out.println(imageResource.getUrl());
+            return Collections.singletonMap("url", imageResource.getUrl());
+        } catch (IOException e) {
+            throw new RuntimeException("Something went wrong!");
+        }
     }
 
     @PostMapping("/series/upload")
@@ -98,6 +119,7 @@ public class SeriesController {
 
     private SeriesResponse seriesToSeriesResponse(Series p) {
         SeriesResponse response = new SeriesResponse();
+        response.setId(p.getId());
         response.setTitle(p.getTitle());
         response.setDescription(p.getDescription());
         response.setCover(p.getCover().getUrl());

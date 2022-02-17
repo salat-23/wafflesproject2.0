@@ -1,6 +1,6 @@
 package com.salat23.waffles.security;
 
-import com.salat23.waffles.security.services.UserDetailsServiceImpl;
+import com.salat23.waffles.services.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

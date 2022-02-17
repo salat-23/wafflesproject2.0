@@ -1,4 +1,4 @@
-package com.salat23.waffles.security.services;
+package com.salat23.waffles.services;
 
 import com.salat23.waffles.models.User;
 import org.springframework.beans.factory.annotation.Autowired;

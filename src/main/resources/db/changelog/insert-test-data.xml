@@ -18,7 +18,7 @@
             <insert tableName="expanded_users">
                 <column name="id">1</column>
                 <column name="user_id">1</column>
-                <column name="avatar_id">1</column>
+                <column name="avatar_id">3</column>
             </insert>
 
             <insert tableName="user_roles">
@@ -27,7 +27,7 @@
             </insert>
             
             <insert tableName="image_resource">
-                <column name="id">1</column>
+                <column name="id">3</column>
                 <column name="url">https://res.cloudinary.com/salat23/image/upload/v1644764810/nsnjbomcdugkcnfrsp8g.jpg</column>
                 <column name="height">225</column>
                 <column name="width">225</column>
@@ -99,7 +99,7 @@
                 <column name="first_created">now()</column>
                 <column name="last_updated">now()</column>
                 <column name="age_restriction_id">1</column>
-                <column name="cover_id">1</column>
+                <column name="cover_id">3</column>
                 <column name="director_id">1</column>
                 <column name="source_id">1</column>
                 <column name="status_id">1</column>
@@ -108,19 +108,13 @@
             </insert>
             <insert tableName="series">
                 <column name="id">2</column>
-                <column name="description">
-                    18 век, Атлантический океан. Фена Хаутман отправилась с отцом в морское путешествие, но вскоре на их корабль
-                    нападают пираты. Фену сажают в шлюпку и ей удаётся спастить в одиночку. Прошло десять лет. Фена выросла
-                    красавицей с белоснежной кожей и отливающими серебром волосами. Когда Фену настигла погоня, её спасает юноша в
-                    красных доспехах и шлеме с оленьими рогами. Это был Юкимару, который обещал найти её. Их встреча разбудила
-                    спящие в Фене воспоминания. Вспомнив эти слова, Фена с Юкимару и его друзья отравляется в новое морское
-                    путешествие искать загадочный «Эдем».
+                <column name="description">18 век, Атлантический океан. Фена Хаутман отправилась с отцом в морское путешествие, но вскоре на их корабль нападают пираты. Фену сажают в шлюпку и ей удаётся спастить в одиночку. Прошло десять лет. Фена выросла красавицей с белоснежной кожей и отливающими серебром волосами. Когда Фену настигла погоня, её спасает юноша в красных доспехах и шлеме с оленьими рогами. Это был Юкимару, который обещал найти её. Их встреча разбудила спящие в Фене воспоминания. Вспомнив эти слова, Фена с Юкимару и его друзья отравляется в новое морское путешествие искать загадочный «Эдем».
                 </column>
                 <column name="title">Очень длинное название аниме спасибо вам лайт новелы за то что пересказываете блять сюжет в заголовке</column>
                 <column name="first_created">now()</column>
                 <column name="last_updated">now()</column>
                 <column name="age_restriction_id">1</column>
-                <column name="cover_id">1</column>
+                <column name="cover_id">3</column>
                 <column name="director_id">1</column>
                 <column name="source_id">1</column>
                 <column name="status_id">1</column>

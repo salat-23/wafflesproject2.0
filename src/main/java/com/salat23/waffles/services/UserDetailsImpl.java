@@ -1,4 +1,4 @@
-package com.salat23.waffles.security.services;
+package com.salat23.waffles.services;
 
 import java.util.Collection;
 import java.util.List;

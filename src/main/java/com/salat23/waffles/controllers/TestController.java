@@ -1,6 +1,6 @@
 package com.salat23.waffles.controllers;
 
-import com.salat23.waffles.security.services.ImageUploadService;
+import com.salat23.waffles.services.ImageUploadService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,9 +15,9 @@ public class TestController {
 		this.imageUploadService = imageUploadService;
 	}
 
-	@PostMapping("/upload")
+	/*@PostMapping("/upload")
 	public void upload(@RequestParam("file") MultipartFile file) {
 		imageUploadService.uploadImage(file);
-	}
+	}*/
 
 }
