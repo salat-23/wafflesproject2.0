@@ -26,9 +26,9 @@ spring:
 
 salat23:
   app:
-    jwtSecret: salatSecretKeyadsgsdgasgsagsag
+    jwtSecret: ${HASH_SECRET}
     jwtExpirationMs: 360000000
     defaultAvatar: https://res.cloudinary.com/salat23/image/upload/v1644669294/fnirn5uwpjaagbickhmr.jpg
-    cloudinary-name: salat23
-    cloudinary-key: 589264481424898
-    cloudinary-secret: UPmhbfKuSwyyG3XnKGm7ACrRUNg
+    cloudinary-name: ${CLOUDINARY_NAME}
+    cloudinary-key: ${CLOUDINARY_KEY}
+    cloudinary-secret: ${CLOUDINARY_SECRET}
